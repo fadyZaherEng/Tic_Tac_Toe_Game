@@ -24,6 +24,8 @@ class _StartGameScreenState extends State<StartGameScreen> {
           ),
         ),
         centerTitle: true,
+        shadowColor: Colors.black,
+        //elevation: 1,
       ),
       body: Center(
         child: Padding(
@@ -49,11 +51,14 @@ class _StartGameScreenState extends State<StartGameScreen> {
                     child: RadioListTile(
                       title: const Text(
                         'X',
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       value: 0,
                       groupValue: radioValue,
                       onChanged: (value) {
-                        print(value);
                         setState(() {
                           radioValue = value!;
                         });
@@ -64,11 +69,14 @@ class _StartGameScreenState extends State<StartGameScreen> {
                     child: RadioListTile(
                       title: const Text(
                         'O',
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       value: 1,
                       groupValue: radioValue,
                       onChanged: (value) {
-                        print(value);
                         setState(() {
                           radioValue = value!;
                         });
@@ -98,6 +106,10 @@ class _StartGameScreenState extends State<StartGameScreen> {
                   },
                   child: const Text(
                     'Start Game',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
