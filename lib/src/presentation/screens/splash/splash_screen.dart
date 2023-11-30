@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:tic_tac_game_app/src/presentation/screens/home/home_screen.dart';
+import 'package:tic_tac_game_app/src/presentation/screens/start/start_game_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,7 +17,9 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 4), () async {
       Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
+          MaterialPageRoute(
+            builder: (context) => const StartGameScreen(),
+          ),
           (route) => false);
     });
   }

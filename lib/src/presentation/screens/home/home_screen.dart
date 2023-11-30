@@ -12,14 +12,15 @@ import 'package:tic_tac_game_app/src/presentation/screens/home/widget/result_wid
 import 'package:tic_tac_game_app/src/presentation/screens/home/widget/switch_player_widget.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  String activePlayer;
+  HomeScreen({super.key, required this.activePlayer});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String _activePlayer = 'X';
+  // String _activePlayer = 'X';
   String _winner = 'XXXXXXXXXXXXXXX';
   int _turn = 1;
   bool _gameOver = false;
@@ -33,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return BlocConsumer<TicTacBloc, TicTacState>(listener: (context, state) {
       if (state is TicTacResetState) {
         _gameOver = state.gameOver;
-        _activePlayer = state.activePlayer;
+        widget.activePlayer = state.activePlayer;
         _winner = state.result;
         _turn = state.turn;
         Player.playerX = [];
@@ -59,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           }
           if (_isSwitch) {
-            _activePlayer = state.activePlayer;
+            widget.activePlayer = state.activePlayer;
           }
         }
       } else if (state is TicTacAutoPlayState) {
@@ -93,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 5,
                 ),
                 PlayerTurnWidget(
-                  activePlayer: _activePlayer,
+                  activePlayer: widget.activePlayer,
                 ),
                 GameBoardWidget(
                   onTap: (index) {
@@ -102,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         TicTacOnTapPlayEvent(
                           index,
                           _game,
-                          _activePlayer,
+                          widget.activePlayer,
                         ),
                       );
                     } else if (_turn == 9) {
@@ -118,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 10,
                 ),
                 ResetButtonWidget(
-                  activePlayer: _activePlayer,
+                  activePlayer: widget.activePlayer,
                   result: _winner,
                   turn: _turn,
                   gameOver: _gameOver,
